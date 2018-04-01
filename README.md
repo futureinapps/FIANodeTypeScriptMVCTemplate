@@ -22,7 +22,7 @@ export default class Home extends Controller {
   //route decorator
   @Decorators.RenderRoute('/', Enums.RouterMethods.GET)
   //if route decorator type Rendering, then name of the next fucntion is the name of view file in ${ControllerName} directory
-  //for example /views/home/home.jade or /views/home/superhome.jade, where first home is a controller name, second home is the controller method name
+  //for example /views/home/home.jade or /views/home/superfolde/home.jade, where first home is a controller name, second home is the controller render method name
   home(router: Express.Router, req: Express.Request, next: Function): Route {
     return {
       title: 'Title'
