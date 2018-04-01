@@ -74,7 +74,7 @@ custom(router: Express.Router, req: Express.Request, next: Function, res:Express
 gulp
 ```
 
-### Start project for production with pm2
+### Start project for production using pm2
 ```sh
 npm start
 ```
