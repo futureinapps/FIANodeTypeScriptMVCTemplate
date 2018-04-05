@@ -3113,9 +3113,9 @@ npmlog@^4.0.2:
     gauge "~2.7.3"
     set-blocking "~2.0.0"
 
-nts-mvc@^0.0.3:
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/nts-mvc/-/nts-mvc-0.0.3.tgz#236084b54df0e70987abf7a53775a50991e34997"
+nts-mvc@^0.0.4:
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/nts-mvc/-/nts-mvc-0.0.4.tgz#b9b99e45cb75ec7a7806d60b124dc5e835288e3a"
   dependencies:
     "@types/express" "^4.11.1"
     "@types/glob" "^5.0.35"

@@ -10,7 +10,7 @@
   },
   "compileOnSave": true,
   "exclude": [
-    "node_modules",
-    "components"
+    "./node_modules/*",
+    "./public/components/*"
   ]
 }

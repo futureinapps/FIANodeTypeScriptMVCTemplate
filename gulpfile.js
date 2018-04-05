@@ -19,7 +19,7 @@ gulp.task('develop', () => {
   livereload.listen();
   nodemon({
     script: 'app.js',
-    ext: 'js coffee jade',
+    ext: 'ts js coffee jade',
     stdout: false
   }).on('readable', function () {
     this.stdout.on('data', (chunk) => {
@@ -32,35 +32,24 @@ gulp.task('develop', () => {
   });
 });
 
-gulp.task('tslint', function (cb) {
-  exec('tslint --poject . --config tslint.json **/*.ts', function (err, stdout, stderr) {
-    console.log(stdout);
-    console.log(stderr);
-    cb(err);
-  });
-})
-
 gulp.task('tsc', function (cb) {
-  exec('tsc --watch -p .', function (err, stdout, stderr) {
-    console.log(stdout);
-    console.log(stderr);
-    cb(err);
-  });
+  logCommand('tsc --watch -p ./tsconfig.json')
 })
 
 gulp.task('webpack', function (cb) {
-  exec('webpack -w', function (err, stdout, stderr) {
-    console.log(stdout);
-    console.log(stderr);
-    cb(err);
-  });
+  logCommand('webpack -w')
 })
+
+function logCommand(c){
+  let command = exec(c)
+  command.stdout.pipe(process.stdout)
+  command.stderr.pipe(process.stderr);
+}
 
 gulp.task('default', [
   'sass',
   'develop',
   'watch',
   'tsc',
-  'tslint',
   'webpack'
 ]);

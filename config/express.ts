@@ -24,8 +24,9 @@ class ExrpessConfig {
     this.initViewEngine();
     this.initLogger();
     this.initParsers();
-    this.initControllers();
     this.initMiddleware();
+    this.initControllers();
+    this.initLastMiddleware();
   }
 
   initLocals() {
@@ -55,6 +56,17 @@ class ExrpessConfig {
     this.app.use(Compress());
     this.app.use(Express.static(this.config.root + '/public'));
     this.app.use(MethodOverride());
+  }
+
+  initControllers() {
+    let controllers = Glob.sync(this.config.root + '/app/controllers/*.js');
+    controllers.forEach((file: any) => {
+      let Controller = require(file).default;
+      new Controller(this.app);
+    });
+  }
+
+  initLastMiddleware() {
     this.app.use((req, res, next) => {
       let err = new Error('Not Found');
       err['status'] = 404;
@@ -77,14 +89,6 @@ class ExrpessConfig {
         error: {},
         title: 'error'
       });
-    });
-  }
-
-  initControllers() {
-    let controllers = Glob.sync(this.config.root + '/app/controllers/*.js');
-    controllers.forEach((file: any) => {
-      let Controller = require(file).default;
-      new Controller(this.app);
     });
   }
 }
